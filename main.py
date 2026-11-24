@@ -18,6 +18,8 @@ def main() -> None:
         )
     if not line.strip():
         raise SystemExit("entry must not be only whitespace")
+    if "\n" in line or "\r" in line:
+        raise SystemExit("entry must be a single line")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="\n") as f:
         f.write(line)
